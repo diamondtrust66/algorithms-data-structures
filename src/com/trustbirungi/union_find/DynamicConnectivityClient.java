@@ -23,7 +23,11 @@ public class DynamicConnectivityClient {
 
         QuickFind qf = new QuickFind(10);
 
-        qf.union(3, 8);
+        // qf.union(3, 8);
+
+        QuickUnion qu = new QuickUnion(10);
+
+        qu.union(4,  3);
 
     }
 }
