@@ -27,7 +27,12 @@ public class DynamicConnectivityClient {
 
         QuickUnion qu = new QuickUnion(10);
 
-        qu.union(4,  3);
+        //qu.union(4,  3);
+
+        WeightedQuickUnion wqu = new WeightedQuickUnion(10);
+        wqu.union(4, 3);
+
+
 
     }
 }
