@@ -30,7 +30,12 @@ public class DynamicConnectivityClient {
         //qu.union(4,  3);
 
         WeightedQuickUnion wqu = new WeightedQuickUnion(10);
-        wqu.union(4, 3);
+
+        //wqu.union(4, 3);
+
+        WeightedQuickUnionPathCompression wqupc = new WeightedQuickUnionPathCompression(10000000);
+
+        wqupc.union(4, 3);
 
 
 

@@ -46,4 +46,5 @@ public class QuickUnion {
 
         System.out.println("Id array after " + unionCount + " runs " + Arrays.toString(id));
     }
+
 }
