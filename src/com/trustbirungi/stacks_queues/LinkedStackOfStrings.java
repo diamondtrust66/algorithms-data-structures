@@ -19,11 +19,15 @@ public class LinkedStackOfStrings {
     }
 
     // Add the new item to the top of the linked list
-    public void push() {
+    public void push(String item) {
         Node oldFirst = first;
         first = new Node();
         first.item = item;
-        first.next = oldFirst; // push the node that was previously at the top of the linked list by setting the reference of the newly top item to the address of the previously top item
+
+        /*push the node that was previously at the top of the linked list by setting the
+        reference of the newly top item to the address of the previously top item
+        */
+        first.next = oldFirst;
     }
 
     // Remove the item at the top of the linked list and return it
