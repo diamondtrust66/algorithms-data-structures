@@ -5,7 +5,10 @@ package com.trustbirungi.stacks_queues;
 * Description: A stack implementation using a singly-linked list that takes in generic types
 * */
 
-public class Stack<Item> {
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+public class Stack<Item> implements Iterable<Item>{
     private Node first = null;
 
     private class Node {
@@ -36,5 +39,34 @@ public class Stack<Item> {
         first = first.next;
 
         return  item;
+    }
+
+    // Implement the iteration
+    public Iterator<Item> iterator() {
+        return new ListIterator();
+    }
+
+    private class ListIterator implements Iterator<Item> {
+        private Node current = first;
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public Item next() {
+            Item item = current.item;
+
+            try {
+                current = current.next;
+
+            } catch (NoSuchElementException noSuchElement) {
+                noSuchElement.printStackTrace();
+
+            }
+
+            return item;
+        }
     }
 }
