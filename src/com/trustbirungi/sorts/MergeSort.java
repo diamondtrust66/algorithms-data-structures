@@ -2,6 +2,8 @@ package com.trustbirungi.sorts;
 
 public class MergeSort {
 
+    static final int CUTOFF = 7;
+
     private static void merge(Comparable[] unsortedArray, Comparable[] auxillaryArray, int low, int mid, int high) {
         //assert isSorted(unsortedArray, low, mid);
         //assert  isSorted(unsortedArray, mid+1, high);
@@ -9,6 +11,12 @@ public class MergeSort {
         //Copy over the items in the unsortedArray into the auxillaryArray
         for(int k = low; k <= high; k++) {
             auxillaryArray[k] = unsortedArray[k];
+        }
+
+        //Use insertion sort for small subarrays (~ 7 items) because mergesort has too much overhead for small subarrays
+        if(high <= low + CUTOFF - 1) {
+            InsertionSort.sort(unsortedArray);
+            return;
         }
 
         int i = low, j = mid + 1;
@@ -38,11 +46,20 @@ public class MergeSort {
 
         sort(unsortedArray, auxillaryArray, low, mid);
         sort(unsortedArray, auxillaryArray, mid+1, high);
+
+        //If the biggest item in the first half of the unsortedArray is less or equal than the smallest item in the
+        // second half of the array, then stop since the array is already sorted.
+        if (!isLess(unsortedArray[mid+1], unsortedArray[mid])) {
+            return;
+        }
+
         merge(unsortedArray, auxillaryArray, low, mid, high);
 
     }
 
     public static void sort(Comparable[] unsortedArray) {
+        Comparable[] auxillaryArray = new Comparable[unsortedArray.length];
+        sort(unsortedArray, auxillaryArray, 0, unsortedArray.length - 1);
 
     }
 
